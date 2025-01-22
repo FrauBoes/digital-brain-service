@@ -22,6 +22,10 @@ def initialize_database():
         if not os.path.exists('artifacts.db'):
             db.create_all()
 
+@app.route('/test', methods=['GET'])
+def test():
+    return {"message": f"Received test"}, 200
+
 @app.route('/artifacts/<uuid:user_uuid>', methods=['POST'])
 def store_artifact(user_uuid):
     if 'file' not in request.files:
@@ -75,4 +79,5 @@ def download_artifacts_by_uuid(user_uuid):
 
 if __name__ == '__main__':
     initialize_database()
-    app.run(host='0.0.0.0', port=5000)
+    print(app.url_map)  # Print out the available routes
+    app.run(host='0.0.0.0', port=443)
