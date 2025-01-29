@@ -1,3 +1,23 @@
-Purpose.
-How to run locally and via Docker.
-Endpoints and their usage.
+# Digital Brain Service
+The service provides an API to store and access data of the Digital Brain project. 
+
+## Setup
+
+### Configure Caddy
+1. Run ansible playbook
+`/applications/lts/user/frauboes/ansible/playbooks/install_caddy.yml`
+
+2. Check reverse proxy is enabled here: 
+`/etc/caddy/Caddyfile`
+
+### Run app as Docker container
+
+1. Build docker image
+`docker build -t digital-brain-service`
+
+2. Run container
+`docker run -d -p 5000:5000 digital-brain-service`
+
+3. Check status
+`docker ps`
+`docker logs <process-id>`

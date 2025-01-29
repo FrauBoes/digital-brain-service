@@ -80,4 +80,4 @@ def download_artifacts_by_uuid(user_uuid):
 if __name__ == '__main__':
     initialize_database()
     print(app.url_map)  # Print out the available routes
-    app.run(host='0.0.0.0', port=443)
+    app.run(host='0.0.0.0', port=5000)
