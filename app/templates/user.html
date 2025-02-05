@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Artifacts</title>
+    <script src="{{ url_for('static', filename='js/user.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Artifacts for User: <span id="user-uuid">{{ user_uuid }}</span></h1>
+    
+    <div id="gallery" class="gallery-container">
+        <!-- Artifacts will be loaded here dynamically -->
+    </div>
+
+    <button id="download-button">Download All as ZIP</button>
+</body>
+</html>

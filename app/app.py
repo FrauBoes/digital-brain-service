@@ -1,10 +1,12 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, render_template, request, jsonify, send_file, send_from_directory, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
 import uuid
 import shutil
 
-app = Flask(__name__)
+UPLOAD_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'uploads'))
+
+app = Flask(__name__, template_folder="templates", static_folder="static")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///artifacts.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -22,12 +24,19 @@ def initialize_database():
         if not os.path.exists('artifacts.db'):
             db.create_all()
 
-@app.route('/test', methods=['GET'])
-def test():
-    return {"message": f"Received test"}, 200
+@app.route("/")
+def home():
+    """Landing page"""
+    return render_template("index.html")
+
+@app.route('/user/<uuid:user_uuid>', methods=['GET'])
+def user_page(user_uuid):
+    """Render the user page for the given UUID."""
+    return render_template("user.html", user_uuid=user_uuid)
 
 @app.route('/artifacts/<uuid:user_uuid>', methods=['POST'])
 def store_artifact(user_uuid):
+    """Store the artifact passed for the given UUID."""
     if 'file' not in request.files:
         return jsonify({'error': 'No file provided'}), 400
 
@@ -48,15 +57,24 @@ def store_artifact(user_uuid):
 
 @app.route('/artifacts/<uuid:user_uuid>', methods=['GET'])
 def get_artifacts_by_uuid(user_uuid):
+    """Get all artifacts of the given uuid."""
     artifacts = Artifact.query.filter_by(uuid=str(user_uuid)).all()
     if not artifacts:
         return jsonify({'error': 'No artifacts found for this UUID'}), 404
 
-    response = [{'uuid': artifact.uuid, 'filename': artifact.filename} for artifact in artifacts]
+    response = [
+        {
+            'uuid': artifact.uuid, 
+            'filename': artifact.filename,
+            'file_url': url_for('uploaded_file', filename=artifact.filename)
+            } 
+        for artifact in artifacts
+    ]
     return jsonify(response)
 
 @app.route('/artifacts/download/<uuid:user_uuid>', methods=['GET'])
 def download_artifacts_by_uuid(user_uuid):
+    """Download all artifacts of the given uuid as zip."""
     artifacts = Artifact.query.filter_by(uuid=str(user_uuid)).all()
     if not artifacts:
         return jsonify({'error': 'No artifacts found for this UUID'}), 404
@@ -76,6 +94,17 @@ def download_artifacts_by_uuid(user_uuid):
         return jsonify({'error': 'Generated file not found'}), 404
 
     return send_file(absolute_zip_path, as_attachment=True, mimetype='application/zip')
+
+@app.route('/uploads/<path:filename>', methods=['GET'])
+def uploaded_file(filename):
+    """Serve uploaded files."""
+    uploads_dir = UPLOAD_FOLDER
+
+    for root, _, files in os.walk(uploads_dir):
+        if filename in files:
+            return send_from_directory(root, filename)
+    
+    return jsonify({'error': 'File not found'}), 404
 
 if __name__ == '__main__':
     initialize_database()
