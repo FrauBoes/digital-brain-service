@@ -32,4 +32,10 @@ Run inside repo: `docker build -t digital-brain-service`
 
 3. Check status
 `docker ps`
-`docker logs <process-id>`
+`docker logs -f digital-brain`
+
+To stop and remove the container, use:
+```
+docker stop digital-brain
+docker rm digital-brain
+```
