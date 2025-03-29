@@ -49,3 +49,9 @@ To stop and remove the container, use:
 docker stop digital-brain
 docker rm digital-brain
 ```
+
+### Test the app
+
+Sample POST request
+
+`curl -X POST -F "file=@<absolute file path>" https://digitalbrain.techschool.lu/artifacts/<uuid>`
