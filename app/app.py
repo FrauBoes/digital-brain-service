@@ -1,15 +1,22 @@
 from flask import Flask, render_template, request, jsonify, send_file, send_from_directory, url_for
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
+from datetime import datetime
+import atexit
 import os
-import uuid
 import shutil
 
-UPLOAD_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'uploads'))
+ARTIFACTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'artifacts'))
+TEMP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'temp'))
+ZIP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'zipfiles'))
+os.makedirs(ZIP_DIR, exist_ok=True)
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///artifacts.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+ALLOWED_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.mp3', '.mp4'}
 
 db = SQLAlchemy(app)
 
@@ -18,6 +25,12 @@ class Artifact(db.Model):
     uuid = db.Column(db.String(36), nullable=False)
     filename = db.Column(db.String(255), nullable=False)
     filepath = db.Column(db.String(255), nullable=False)
+
+class DownloadLog(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    uuid = db.Column(db.String(36), nullable=False)
+    zip_path = db.Column(db.String(255), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
 def initialize_database():
     with app.app_context():
@@ -44,9 +57,17 @@ def store_artifact(user_uuid):
     if not file.filename:
         return jsonify({'error': 'File must have a name'}), 400
 
-    filename = f"{uuid.uuid4()}_{file.filename}"
-    filepath = os.path.join('uploads', filename)
-    os.makedirs('uploads', exist_ok=True)
+    filename = secure_filename(file.filename)
+    if not any(filename.lower().endswith(ext) for ext in ALLOWED_EXTENSIONS):
+        return jsonify({'error': 'Unsupported file type'}), 400
+
+    user_dir = os.path.join('artifacts', str(user_uuid))
+    os.makedirs(user_dir, exist_ok=True)
+
+    filepath = os.path.join(user_dir, filename)
+    if os.path.exists(filepath):
+        return jsonify({'error': 'File already exists'}), 409
+
     file.save(filepath)
 
     artifact = Artifact(uuid=str(user_uuid), filename=filename, filepath=filepath)
@@ -64,10 +85,10 @@ def get_artifacts_by_uuid(user_uuid):
 
     response = [
         {
-            'uuid': artifact.uuid, 
+            'uuid': artifact.uuid,
             'filename': artifact.filename,
-            'file_url': url_for('uploaded_file', filename=artifact.filename)
-            } 
+            'file_url': url_for('uploaded_file_by_uuid', user_uuid=artifact.uuid, filename=artifact.filename)
+        }
         for artifact in artifacts
     ]
     return jsonify(response)
@@ -79,34 +100,51 @@ def download_artifacts_by_uuid(user_uuid):
     if not artifacts:
         return jsonify({'error': 'No artifacts found for this UUID'}), 404
 
-    temp_dir = os.path.join('uploads', f"temp_{user_uuid}")
-    os.makedirs(temp_dir, exist_ok=True)
+    os.makedirs(TEMP_DIR, exist_ok=True)
 
     for artifact in artifacts:
-        shutil.copy(artifact.filepath, temp_dir)
+        shutil.copy(artifact.filepath, TEMP_DIR)
 
-    zip_path = os.path.join('uploads', f"{user_uuid}_artifacts.zip")
-    shutil.make_archive(zip_path[:-4], 'zip', temp_dir)
+    zip_path = os.path.join(ZIP_DIR, f"{user_uuid}_artifacts.zip")
+    shutil.make_archive(zip_path[:-4], 'zip', TEMP_DIR)
 
     absolute_zip_path = os.path.abspath(zip_path)
 
     if not os.path.exists(absolute_zip_path):
         return jsonify({'error': 'Generated file not found'}), 404
 
+    log = DownloadLog(uuid=str(user_uuid), zip_path=absolute_zip_path)
+    db.session.add(log)
+    db.session.commit()
+
+    shutil.rmtree(TEMP_DIR)
     return send_file(absolute_zip_path, as_attachment=True, mimetype='application/zip')
 
-@app.route('/uploads/<path:filename>', methods=['GET'])
-def uploaded_file(filename):
-    """Serve uploaded files."""
-    uploads_dir = UPLOAD_FOLDER
+@app.route('/artifacts/<uuid:user_uuid>/<path:filename>', methods=['GET'])
+def uploaded_file_by_uuid(user_uuid, filename):
+    """Serve uploaded file from per-user folder."""
+    user_folder = os.path.join(ARTIFACTS_DIR
+, str(user_uuid))
+    file_path = os.path.join(user_folder, filename)
+    print(f"Looking for: {file_path}")
 
-    for root, _, files in os.walk(uploads_dir):
-        if filename in files:
-            return send_from_directory(root, filename)
-    
+    if os.path.exists(file_path):
+        return send_from_directory(user_folder, filename)
+    print("File not found!")
     return jsonify({'error': 'File not found'}), 404
+
+def cleanup_folders():
+    for folder in [ZIP_DIR]:
+        try:
+            shutil.rmtree(folder)
+            print(f"Cleaned up '{folder}/' folder.")
+        except FileNotFoundError:
+            print(f"Folder '{folder}/' not found. Skipped.")
+        except Exception as e:
+            print(f"Error removing '{folder}/': {e}")
 
 if __name__ == '__main__':
     initialize_database()
-    print(app.url_map)  # Print out the available routes
+    print(app.url_map)
+    atexit.register(cleanup_folders)
     app.run(host='0.0.0.0', port=5000)

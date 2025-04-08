@@ -1,19 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Artifacts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="{{ url_for('static', filename='js/user.js') }}" defer></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style-user.css') }}">
 </head>
 <body>
-    <h1>Artifacts for User: <span id="user-uuid">{{ user_uuid }}</span></h1>
-    
-    <div id="gallery" class="gallery-container">
-        <!-- Artifacts will be loaded here dynamically -->
-    </div>
+    <!-- Grid background layer -->
+    <div class="grid-bg"></div>
 
-    <button id="download-button">Download All as ZIP</button>
+    <!-- Scanlines overlay -->
+    <div class="scanlines"></div>
+
+    <div class="interface">
+        <header>
+            <h1>Artifacts for User: <span id="user-uuid">{{ user_uuid }}</span></h1>
+        </header>
+
+        <section class="intro-text">
+            <p>
+                Welcome to your digital archive. 🧠✨<br>
+                Here you'll find memory fragments, audio echoes, and visual traces left behind in the system.<br>
+                They’ve been preserved, curated, and... maybe even tampered with.<br>
+                Explore wisely.
+            </p>
+        </section>
+
+        <!-- GALLERY OF ARTIFACTS -->
+        <div id="gallery" class="gallery-container">
+            <!-- Artifacts will be loaded here dynamically -->
+        </div>
+
+        <!-- DOWNLOAD BUTTON -->
+        <div class="download-button-wrapper">
+            <button id="download-button">Download All as ZIP</button>
+        </div>
+        <!-- Footer -->
+        <footer>
+            <p>© 2045 Luxembourg Tech School</p>
+        </footer>
+    </div>
 </body>
 </html>

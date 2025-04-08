@@ -17,31 +17,43 @@ document.addEventListener("DOMContentLoaded", function () {
                 artifactElement.classList.add("gallery-item");
 
                 const fileUrl = artifact.file_url;
-                const filename = artifact.filename;
+                const filename = artifact.filename.toLowerCase();
 
-                if (filename.match(/\.(jpg|jpeg|png|gif)$/i)) {
-                    // Display images
+                // PNG or JPG Images
+                if (filename.match(/\.(png|jpg|jpeg)$/)) {
                     const img = document.createElement("img");
                     img.src = fileUrl;
                     img.alt = filename;
                     img.classList.add("gallery-img");
                     artifactElement.appendChild(img);
-                } else if (filename.match(/\.(mp3|wav|ogg)$/i)) {
-                    // Display audio player
+                }
+
+                // MP3 Audio
+                else if (filename.endsWith(".mp3")) {
                     const audio = document.createElement("audio");
                     audio.controls = true;
                     const source = document.createElement("source");
                     source.src = fileUrl;
-                    source.type = filename.endsWith(".mp3") ? "audio/mpeg" : "audio/ogg";
+                    source.type = "audio/mpeg";
                     audio.appendChild(source);
                     artifactElement.appendChild(audio);
-                } else {
-                    // Display generic file download link
-                    const fileLink = document.createElement("a");
-                    fileLink.href = fileUrl;
-                    fileLink.innerText = `Download ${filename}`;
-                    fileLink.target = "_blank";
-                    artifactElement.appendChild(fileLink);
+                }
+
+                // MP4 Video
+                else if (filename.endsWith(".mp4")) {
+                    const video = document.createElement("video");
+                    video.controls = true;
+                    video.width = 200;
+                    const source = document.createElement("source");
+                    source.src = fileUrl;
+                    source.type = "video/mp4";
+                    video.appendChild(source);
+                    artifactElement.appendChild(video);
+                }
+
+                // Skip all other file types
+                else {
+                    return;
                 }
 
                 gallery.appendChild(artifactElement);
