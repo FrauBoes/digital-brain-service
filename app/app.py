@@ -6,9 +6,10 @@ import atexit
 import os
 import shutil
 
-ARTIFACTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'artifacts'))
-TEMP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'temp'))
-ZIP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'zipfiles'))
+ARTIFACTS_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'artifacts'))
+ZIP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'zips'))
+TEMP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'temp'))
+
 os.makedirs(ZIP_DIR, exist_ok=True)
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
