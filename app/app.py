@@ -147,4 +147,5 @@ if __name__ == '__main__':
     initialize_database()
     print(app.url_map)
     atexit.register(cleanup_folders)
+    app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024  # limit to 20 MB
     app.run(host='0.0.0.0', port=5000)
