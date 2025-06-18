@@ -1,0 +1,486 @@
+
+/*OVERALL*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', sans-serif;
+}
+
+body{
+    background-color: black;
+    min-height: 100vh;
+}
+
+.interface{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2%;
+    
+}
+
+.flex{
+    display: flex;
+}
+
+.contact button{
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #3486dd;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    color: black;
+    white-space: nowrap;
+}
+
+.contact button:hover{
+    box-shadow: 0px 0px 8px #3486dd;
+}
+
+
+/*HEADER*/
+header{
+    padding: 100px 4%;
+}
+
+header > .interface{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+header img{
+    max-height: 100px;
+    position: relative;
+    max-width: 100%;
+    height: auto;
+}
+
+header a{
+    color: rgb(130, 130, 130);
+    text-decoration: none;
+    display: inline-block;
+    transition: .2s;
+}
+
+header a:hover{
+    color: white;
+    transform: scale(1.05);
+}
+
+header nav ul{
+    list-style-type: none;
+}
+
+header nav ul li{
+    display: inline-block;
+    padding: 0 40px;
+}
+
+.bottom-header nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+.bottom-header nav ul li a{
+    color: white;
+    padding: 20px 40px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    transition: .2s;
+}
+
+.bottom-header nav ul li a:hover{
+    background-color: rgb(0, 0, 0);
+    color: #3486dd;
+    box-shadow: inset 0 0 8px black;
+}
+
+header .contact button:hover{
+    box-shadow: 0px 0px 8px #3486dd;
+    transform: scale(1.05);
+}
+
+.drophover{
+    position: relative;
+}
+
+.drophover .drop{
+    position: absolute;
+    background-color: #000000;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    z-index: 1000;
+}
+
+.drophover .drop a{
+    padding: 20px;
+}
+
+.drophover:hover .drop{
+    height: 250px;
+}
+
+/*TOP WEBSITE*/
+
+section.top{
+    padding: 40px 4%;
+}
+
+section.top .flex{
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
+    flex-wrap: wrap;
+}
+
+.top h1{
+    color: white;
+    font-size: 42px;
+    line-height: 1.2;
+}
+
+.top .text-top h1 span{
+    color: #3486dd;
+}
+
+.top .text-top p{
+    color: white;
+    margin: 40px 0;
+}
+
+.top .img-top img{
+    max-height: 200px;
+    max-width: 100%;
+    position: relative;
+    animation: fly 2s ease-in-out infinite alternate;
+}
+
+@keyframes fly{
+    0%{
+        top: 0;
+    }
+    100%{
+        top:30px
+    }
+}
+
+.interface .title span{
+    color: white;
+}
+
+section.purposes{
+    padding: 40px 4%;
+}
+
+section.purposes .flex{
+    gap: 100px;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.purposes .purposes-box{
+    color: black;
+    padding: 50px;
+    border-radius: 20px;
+    margin-top: 45px;
+    transition: .2s;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    min-width: 280px;
+}
+
+.purposes .purposes-box:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 20px black;
+}
+
+.purposes .purposes-box a{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.purposes .purposes-box h3{
+    font-size: 28px;
+    margin: 0 0 20px 0;
+    color: black;
+    text-align: left;
+}
+
+.purposes .purposes-box p{
+    color: #000000;
+    line-height: 1.6;
+    text-align: left;
+    flex-grow: 1;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.purposes .purposes-box img{
+    max-height: 200px;
+    max-width: 50%;
+    /*position: center;*/
+    margin: 0 auto;
+    display: block;
+
+}
+
+.page1{
+    background-color:#3486dd;
+}
+
+.page2{
+    background-color: #000000;
+}
+
+.rolling{
+    height: 60vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+section{
+    scroll-snap-align: start;
+    display: flex;
+    position: sticky;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+footer{
+    position: absolute;
+    border-top: 0.5px solid #FFF;
+    background-color: #3486dd;
+    height: auto;
+    padding-top: 10px;
+    width: 100vw;
+    color: #FFF;
+}
+
+.footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer-content h3{
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 3rem;
+}
+
+.footer-content img{
+    max-height: 100px;
+    position: relative;
+    max-width: 100%;
+    height: auto;
+}
+
+.footer-bottom{
+    background: #3486dd;
+    width: 100vw;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-bottom p{
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.footer-bottom span{
+    text-transform: uppercase;
+    opacity: .4;
+    font-weight: 200;
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+
+/* Tablet styles */
+@media screen and (max-width: 1024px) {
+    header{
+        padding: 60px 4%;
+    }
+    
+    header > .interface{
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .bottom-header nav ul li{
+        padding: 0 20px;
+    }
+    
+    .bottom-header nav ul li a{
+        padding: 15px 20px;
+        font-size: 18px;
+    }
+    
+    section.top .flex{
+        gap: 40px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .top h1{
+        font-size: 36px;
+    }
+    
+    .purposes .flex{
+        gap: 40px;
+        flex-direction: column;
+    }
+    
+    .purposes .purposes-box{
+        min-width: 100%;
+        padding: 40px;
+    }
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    header{
+        padding: 40px 4%;
+    }
+    
+    header img{
+        max-height: 80px;
+    }
+    
+    .bottom-header nav ul{
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .bottom-header nav ul li{
+        padding: 0;
+        width: 100%;
+    }
+    
+    .bottom-header nav ul li a{
+        padding: 15px;
+        text-align: center;
+    }
+    
+    .contact button{
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+    
+    section.top{
+        padding: 20px 4%;
+    }
+    
+    .top h1{
+        font-size: 28px;
+        text-align: center;
+    }
+    
+    .top .text-top p{
+        margin: 20px 0;
+        text-align: center;
+    }
+    
+    .top .text-top p br{
+        display: none; /* Remove line breaks on mobile */
+    }
+    
+    .top .img-top img{
+        max-height: 150px;
+    }
+    
+    .interface .title{
+        font-size: 28px;
+    }
+    
+    section.purposes{
+        padding: 20px 4%;
+    }
+    
+    .purposes .purposes-box{
+        padding: 30px 20px;
+        margin-top: 20px;
+        min-height: 300px;
+    }
+    
+    .purposes .purposes-box h3{
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .purposes .purposes-box p{
+        text-align: center;
+        font-size: 14px;
+    }
+    
+    .drophover:hover .drop{
+        height: auto;
+        position: static;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+    
+    .rolling{
+        height: auto;
+        overflow-y: visible;
+    }
+}
+
+/* Small mobile styles */
+@media screen and (max-width: 480px) {
+    .interface{
+        padding: 0 4%;
+    }
+    
+    header{
+        padding: 30px 2%;
+    }
+    
+    .contact button{
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .top h1{
+        font-size: 24px;
+    }
+    
+    .top .text-top p{
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .purposes .purposes-box{
+        padding: 20px 15px;
+    }
+    
+    .purposes .purposes-box h3{
+        font-size: 20px;
+    }
+    
+    .purposes .purposes-box p{
+        font-size: 13px;
+    }
+}

@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-index.css') }}">
-    <title>NFC Card</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Home</title>
 </head>
 <body>
 
     <header>
         <div class="interface">
             <div class="logo">
-                <a href="#">
-                    <img src="logo.png" alt="Logo">
+                <a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
                 </a>
             </div>
 
@@ -21,13 +21,11 @@
             <div class="interface">
                 <nav class="menu-header">
                     <ul>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li class="drophover"><a href="#">Brain</a>
                             <div class="drop">
-                                <a href="#">Stored</a>
-                                <a href="#">Trapped</a>
-                                <a href="#">Predicted</a>
-                                <a href="#">Uploaded</a>
+                                <a href="https://digitalbrain.techschool.lu/user/28f40809-38a3-485d-81ca-251652015e5a">Music</a>
+                                <a href="https://digitalbrain.techschool.lu/user/28f40809-38a3-485d-81ca-251652015e5a">Visuals</a>
                             </div>
                         </li>
                         <li><a href="#">Reflections</a></li>
@@ -36,8 +34,8 @@
             </div>
         </section>
             <div class="contact">
-                <a href="#">
-                    <button>Contact</button>
+                <a href="{{ url_for('about') }}">
+                    <button>About Us</button>
                 </a>
             </div>
         </div>
@@ -48,11 +46,11 @@
             <div class="interface">
                 <div class="flex">
                     <div class="text-top">
-                        <h1>Welcome to<span>...</span></h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br> 
-                            sed do eiusmod tempor incididunt ut labore et dolore magna <br>
-                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation <br>
-                            ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <h1>Welcome to <span>Digital Brain</span></h1>
+                        <p>Digital Brain Project is an immersive, futuristic experience designed <br>
+                            to blur the boundaries between memory, identity, and AI. Participants <br>
+                             are invited to leave the familiar world behind and step into a high-tech, <br>
+                             narrative-driven journey composed of five interactive phases:</p>
         
                         <div class="contact">
                             <a href="#">
@@ -61,7 +59,7 @@
                         </div>
                     </div>
                     <div class="img-top">
-                        <img src="logo.png" alt="logo image for the top of website">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo image for the top of website">
                     </div>
                 </div>
             </div>
@@ -71,46 +69,27 @@
             <section class="page1">
                 <section class="purposes">
                     <div class="interface">
-                        <h2 class="titulo"> The <span>Projects</span></h2>
+                        <h2 class="title"> The <span>Tools</span></h2>
                         <div class="flex">
 
                             
                             <div class="purposes-box">
-                                <i class="bi bi-code-square"></i>
-                                <h3>Stored</h3>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                     Sed do eiusmod tempor incididunt ut labore et dolore 
-                                     magna aliqua.
+                                <a href="#">
+                                <h3>Brain Implant</h3>
+                                <p> Now highlights the surgical integration, quantum technology, bidirectional communication, cognitive enhancement, memory expansion, and the concept of human evolution beyond natural limitations.
                                 </p>
+                                <img src="{{ url_for('static', filename='images/brain-implant.png') }}" alt="Image of a brain implant">
+                                </a>
                             </div>
 
                             <div class="purposes-box">
-                                <i class="bi bi-person-up"></i>
-                                <h3>Trapped</h3>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Sed do eiusmod tempor incididunt ut labore et dolore 
-                                    magna aliqua.
+                                <a href="#">
+                                <h3>Headband</h3>
+                                <p> Features detailed technical specifications (1,024 electrodes, quantum sensors), explains the non-invasive electromagnetic mapping technology, adaptive AI learning, telepathic communication capabilities, and positions it as the safe entry point into the Digital Brain ecosystem.
                                 </p>
+                                <img src="{{ url_for('static', filename='images/headband.png') }}" alt="Image of a headband">
+                                </a>
                             </div>
-
-                            <div class="purposes-box">
-                                <i class="bi bi-phone"></i>
-                                <h3>Predicted</h3>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Sed do eiusmod tempor incididunt ut labore et dolore 
-                                    magna aliqua.
-                                </p>
-                            </div>
-
-                            <div class="purposes-box">
-                                <i class="bi bi-phone"></i>
-                                <h3>Uploaded</h3>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Sed do eiusmod tempor incididunt ut labore et dolore 
-                                    magna aliqua.
-                                </p>
-                            </div>
-
                         </div>
 
                     </div>
@@ -118,6 +97,16 @@
             
         </div>
     </main>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Digital Brain</h3>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo footer">
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2025 Digital Brain.<span>Luxembourg Tech School</span></p>
+        </div>
+    </footer>
 
 </body>
 </html>
