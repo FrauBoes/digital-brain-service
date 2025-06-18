@@ -43,6 +43,10 @@ def home():
     """Landing page"""
     return render_template("index.html")
 
+@app.route('/about', methods=['GET', ])
+def about():
+    return render_template('about.html')
+
 @app.route('/user/<uuid:user_uuid>', methods=['GET'])
 def user_page(user_uuid):
     """Render the user page for the given UUID."""

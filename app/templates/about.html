@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="AboutUs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <title>About Us</title>
+</head>
+<body>
+    <header>
+        <div class="interface">
+            <div class="logo">
+                <a href="#">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+                </a>
+            </div>
+
+        <section class="bottom-header">
+            <div class="interface">
+                <nav class="menu-header">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li class="drophover"><a href="#">Brain</a>
+                            <div class="drop">
+                                <a href="https://digitalbrain.techschool.lu/user/28f40809-38a3-485d-81ca-251652015e5a">Music</a>
+                                <a href="https://digitalbrain.techschool.lu/user/28f40809-38a3-485d-81ca-251652015e5a">Visuals</a>
+                            </div>
+                        </li>
+                        <li><a href="#">Reflections</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+            <div class="contact">
+                <a href="#">
+                    <button>About Us</button>
+                </a>
+            </div>
+        </div>
+    </header>
+
+        <section class="people-section">
+            <div class="content">
+                <h1>Our Team</h1>
+                <h2>Punyabhalan - Gabriel - Juliana - Vasileia</h2>
+                <p>Meet Punyabhalan, Gabriel, Juliana and Vasileia, our skilled team of developers.
+                 We are four students from Luxembourg Tech School who collaborated to explore the cutting-edge world of neurotechnology. Together, we developed both the narrative and technological aspects of this Digital Brain experience, examining how brain-computer interfaces are transforming from science fiction into reality. Our project invites visitors to contemplate the profound implications of merging human consciousness with artificial intelligence in today's rapidly evolving technological landscape.</p>
+                <button>Contact Us</button>
+            </div>
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/team.jpeg') }}" alt="Our team">
+
+            </div>
+        </section>
+    </div>
+</body>
+<footer>
+    <div class="footer-content">
+        <h3>Digital Brain</h3>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo footer">
+    </div>
+    <div class="footer-bottom">
+        <p>copyright &copy;2025 Digital Brain.<span>Luxembourg Tech School</span></p>
+    </div>
+</footer>
+
+</html>
