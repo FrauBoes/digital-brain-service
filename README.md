@@ -36,7 +36,7 @@ Run inside repo:
 
 2. Run container
    
-`docker run -d --name digital-brain -p 5000:5000 digital-brain-service`
+`docker run -d --name digital-brain -p 5000:5000 digital-brain-service . `
 
 3. Check status
    
