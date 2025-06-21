@@ -32,7 +32,7 @@ Check the status of Caddy using:
 1. Build docker image
 Run inside repo: 
 
-`docker build -t digital-brain-service`
+`docker build -t digital-brain-service .`
 
 2. Run container
    
