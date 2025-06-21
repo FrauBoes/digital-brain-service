@@ -7,9 +7,27 @@
     <title>User Artifacts</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="{{ url_for('static', filename='js/user.js') }}" defer></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-user.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user.css') }}">
 </head>
 <body>
+    <header>
+        <div class="interface">
+            <div class="logo">
+                <a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+                </a>
+            </div>
+
+            <div class="contact">
+                <a href="{{ url_for('about') }}">
+                    <button>About Us</button>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
     <!-- Grid background layer -->
     <div class="grid-bg"></div>
 
@@ -39,10 +57,16 @@
         <div class="download-button-wrapper">
             <button id="download-button">Download All as ZIP</button>
         </div>
-        <!-- Footer -->
-        <footer>
-            <p>© 2045 Luxembourg Tech School</p>
-        </footer>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <h3>Digital Brain</h3>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo footer">
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2025 Digital Brain. <a href="https://www.techschool.lu" target="_blank" rel="noopener noreferrer">LUXEMBOURG TECH SCHOOL</a></p>
+        </div>
+    </footer>
     </div>
 </body>
 </html>

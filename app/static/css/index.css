@@ -12,6 +12,11 @@ body{
     min-height: 100vh;
 }
 
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
 .interface{
     max-width: 1280px;
     margin: 0 auto;
@@ -86,7 +91,6 @@ header nav ul li{
     align-items: center;
     justify-content: center;
     list-style-type: none;
-    flex-wrap: wrap;
 }
 
 .bottom-header nav ul li a{
