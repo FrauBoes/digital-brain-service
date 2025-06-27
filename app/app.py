@@ -128,15 +128,27 @@ def download_artifacts_by_uuid(user_uuid):
 @app.route('/artifacts/<uuid:user_uuid>/<path:filename>', methods=['GET'])
 def uploaded_file_by_uuid(user_uuid, filename):
     """Serve uploaded file from per-user folder."""
-    user_folder = os.path.join(ARTIFACTS_DIR
-, str(user_uuid))
+    user_folder = os.path.join(ARTIFACTS_FOLDER, str(user_uuid))
     file_path = os.path.join(user_folder, filename)
     print(f"Looking for: {file_path}")
 
-    if os.path.exists(file_path):
-        return send_from_directory(user_folder, filename)
-    print("File not found!")
-    return jsonify({'error': 'File not found'}), 404
+    if not os.path.exists(file_path):
+        print("File not found!")
+        return jsonify({'error': 'File not found'}), 404
+
+    ext = os.path.splitext(filename)[1].lower()
+    if ext == '.mp4':
+        mimetype = 'video/mp4'
+    elif ext == '.mp3':
+        mimetype = 'audio/mpeg'
+    elif ext == '.png':
+        mimetype = 'image/png'
+    elif ext == '.jpg' or ext == '.jpeg':
+        mimetype = 'image/jpeg'
+    else:
+        mimetype = None
+
+    return send_from_directory(user_folder, filename, mimetype=mimetype)
 
 def cleanup_folders():
     for folder in [ZIP_DIR]:
