@@ -488,3 +488,152 @@ footer{
         font-size: 13px;
     }
 }
+
+/* Neural Artifacts Section */
+.neural-artifacts {
+    padding: 60px 4%;
+    background-color: #000000;
+}
+
+.card-usage {
+    background-color: rgba(52, 134, 221, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 30px 0;
+}
+
+.card-usage ul {
+    color: white;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.6;
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.card-usage li {
+    margin-bottom: 10px;
+}
+
+/* Themes Section */
+.themes {
+    padding: 60px 4%;
+    background-color: #1a1a1a;
+}
+
+.themes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.theme-section {
+    background-color: rgba(52, 134, 221, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 4px solid #3486dd;
+}
+
+.theme-section h3 {
+    color: #3486dd;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.theme-section ul {
+    color: white;
+    line-height: 1.8;
+    font-size: 16px;
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.theme-section li {
+    margin-bottom: 12px;
+}
+
+.theme-section a {
+    color: #3486dd;
+    text-decoration: underline;
+}
+
+.theme-section a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* Three-column layout for tools */
+.purposes .flex {
+    gap: 60px;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.purposes .purposes-box {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+}
+
+/* Responsive adjustments for new sections */
+@media screen and (max-width: 1024px) {
+    .themes-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .purposes .flex {
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .neural-artifacts, .themes {
+        padding: 40px 4%;
+    }
+    
+    .card-usage {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .themes-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .theme-section {
+        padding: 20px;
+    }
+    
+    .theme-section h3 {
+        font-size: 20px;
+    }
+    
+    .purposes .flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .purposes .purposes-box {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card-usage ul {
+        font-size: 14px;
+    }
+    
+    .theme-section ul {
+        font-size: 14px;
+    }
+    
+    .theme-section {
+        padding: 15px;
+    }
+}

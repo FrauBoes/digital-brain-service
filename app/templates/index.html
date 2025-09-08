@@ -30,7 +30,8 @@
             <div class="interface">
                 <div class="flex">
                     <div class="text-top">
-                        <h1>Welcome to <span>Digital Brain</span></h1>
+                        <h1>Welcome to the <span>Digital Brain Experience Portal</span></h1>
+                        <h2 style="color: #3486dd; font-style: italic; margin: 20px 0; font-size: 24px;"><em>What does it mean to be human in an age of thinking machines?</em></h2>
                         <p>Digital Brain Project is an immersive, futuristic experience designed <br>
                             to blur the boundaries between memory, identity, and AI. Participants <br>
                              are invited to leave the familiar world behind and step into a high-tech, <br>
@@ -43,35 +44,95 @@
             </div>
         </section>
 
+        <section class="neural-artifacts">
+            <div class="interface">
+                <h2>Your <span>Neural Artifacts</span></h2>
+                <p>Your personal brain data - turned into sound and visuals - is now part of your own <em>neural artifact</em>, stored on the NFC card you received.</p>
+                <p>Let's dive again into the world you briefly entered.</p>
+                
+                <div class="card-usage">
+                    <h3>Use your <strong>Experience Card</strong> to:</h3>
+                    <ul>
+                        <li>Re-watch your personalized <strong>brain visualization</strong></li>
+                        <li>Listen again to your <strong>brain-generated melody</strong></li>
+                    </ul>
+                    <p>Click <a href="#scan-card">[here]</a> to scan your card and access your neural archive.</p>
+                </div>
+            </div>
+        </section>
+
         <div class="rolling">
             <section class="page1">
                 <section class="purposes">
                     <div class="interface">
-                        <h2 class="title"> The <span>Tools</span></h2>
+                        <h2 class="title">The Story & <span>Tools</span></h2>
+                        <p style="color: black; text-align: center; margin-bottom: 20px; font-size: 18px;">Set in <strong>2045</strong>, the journey began in a world transformed by brain-computer interfaces. Once experimental, these neural technologies now shape how people work, decide, dream - and even remember. You were invited to explore:</p>
+                        
                         <div class="flex">
-
-                            
                             <div class="purposes-box">
-                                <h3>Brain Implant</h3>
-                                <p> Now highlights the surgical integration, quantum technology, bidirectional communication, cognitive enhancement, memory expansion, and the concept of human evolution beyond natural limitations.
-                                </p>
+                                <h3>Brain Implant (Prototype)</h3>
+                                <p>Once a medical breakthrough, now a transformative leap in human evolution. This prototype highlights the surgical integration of advanced technology, enabling bidirectional communication between brain and machine. Designed for cognitive enhancement and memory expansion, it raises also questions of mental privacy.</p>
                                 <img src="{{ url_for('static', filename='images/brain-implant.png') }}" alt="Image of a brain implant">
-                                </a>
                             </div>
 
                             <div class="purposes-box">
-                                <h3>Headband</h3>
-                                <p> Features detailed technical specifications (1,024 electrodes, quantum sensors), explains the non-invasive electromagnetic mapping technology, adaptive AI learning, telepathic communication capabilities, and positions it as the safe entry point into the Digital Brain ecosystem.
-                                </p>
+                                <h3>Neural Headband</h3>
+                                <p>This sleek, non-invasive device opens the door to your mind. Equipped with 1,024 micro-electrodes and sensors, it uses advanced electromagnetic mapping to read brain activity with remarkable precision. The headband is your safe, external entry point into the <em>Digital Brain</em> ecosystem.</p>
                                 <img src="{{ url_for('static', filename='images/headband.png') }}" alt="Image of a headband">
-                                </a>
+                            </div>
+
+                            <div class="purposes-box">
+                                <h3>Voice Ritual at the Echo Point</h3>
+                                <p>In this quiet moment, you were invited to whisper a memory, a feeling, or a name into the Echo Point. Nothing was recorded. As neurotechnology moves toward capturing, storing, and even editing memories, the question arises: What does it mean to keep something truly private, truly human, in a world where even your thoughts might no longer be your own?</p>
+                                <img src="{{ url_for('static', filename='images/echo-point.png') }}" alt="Image of Echo Point">
                             </div>
                         </div>
 
+                        <div style="text-align: center; margin-top: 30px; color: black;">
+                            <p style="font-style: italic; font-size: 20px;"><em>And then... you were trapped. A simulation locked your consciousness. Only by proving your humanity could you escape.</em></p>
+                        </div>
                     </div>
                 </section>
-            
+            </div>
         </div>
+
+        <section class="themes">
+            <div class="interface">
+                <h2>Discover the <span>Themes</span></h2>
+                <p>Here are some key concepts the experience touched on - with further resources to keep exploring.</p>
+
+                <div class="theme-section">
+                    <h3>Brain-Computer Interfaces (BCI)</h3>
+                    <ul>
+                        <li><strong>What they are:</strong> tools that link your brain to digital systems - to restore function or enhance cognition.</li>
+                        <li><strong>Real-world use:</strong> from prosthetics to controlling games with your thoughts.</li>
+                        <li><strong>Learn more:</strong> <a href="https://www.youtube.com/watch?v=FHRbL0x56wQ" target="_blank" rel="noopener noreferrer">BCI Interfaces Lecture</a></li>
+                    </ul>
+                </div>
+
+                <div class="theme-section">
+                    <h3>Fiction Meets Tech -- Brain Sci-Fi</h3>
+                    <p>The narrative inspiration behind this experience drew from visionary science fiction. Recommended reads & movies:</p>
+                    <ul>
+                        <li><a href="https://www.imdb.com/title/tt0133093/" target="_blank" rel="noopener noreferrer">Matrix (Movie)</a></li>
+                        <li><a href="https://www.imdb.com/title/tt0181689" target="_blank" rel="noopener noreferrer">Minority Report (Movie)</a></li>
+                        <li><a href="https://www.imdb.com/title/tt2209764" target="_blank" rel="noopener noreferrer">Transcendence (Movie)</a></li>
+                        <li><a href="https://www.simonandschuster.com/books/NeuroScience-Fiction/Rodrigo-Quian-Quiroga/9781950665051" target="_blank" rel="noopener noreferrer">Neuroscience Fiction (Book)</a></li>
+                        <li><strong>Learn more:</strong> <a href="https://www.neurafutures.com/menu/" target="_blank" rel="noopener noreferrer">Neurafutures by MIT Media Lab</a></li>
+                    </ul>
+                </div>
+
+                <div class="theme-section">
+                    <h3>Ethics of Neurotechnology</h3>
+                    <p>Would you upload your brain for immortality? Would you give up privacy for intelligence? You faced these questions. Now explore them more deeply.</p>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=PP_7FOnMRF0" target="_blank" rel="noopener noreferrer">Nita Farahany on The Battle for Your Brain</a></li>
+                        <li><a href="https://www.unesco.org/en/ethics-neurotech" target="_blank" rel="noopener noreferrer">UNESCO on Ethics of Neurotech</a></li>
+                        <li><strong>Ready to challenge your thinking:</strong> <a href="https://www.nitafarahany.com/quizzes" target="_blank" rel="noopener noreferrer">Take a Quiz</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>

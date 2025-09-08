@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="AboutUs.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
     <title>About Us</title>
@@ -16,35 +15,41 @@
                     <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
                 </a>
             </div>
+        </div>
     </header>
+
+    <section class="about-intro">
+        <div class="interface">
+            <h1 style="color: #3486dd; text-align: center; margin-bottom: 30px;">About Us</h1>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="color: white; font-size: 18px; line-height: 1.6; margin-bottom: 20px;">The <em>Digital Brain</em> was imagined, designed, and built by a multidisciplinary team of four students from the Luxembourg Tech School guided by the LTS Coaches Sara Kaiser and Julia Boes.</p>
+                <p style="color: white; font-size: 18px; line-height: 1.6; margin-bottom: 40px;">Blending science fiction with emerging neurotechnologies, and supported by immersive storytelling and performance design, this project became a bold and experimental learning journey - and an invitation to explore what it means to be human in a hyper-technological world.</p>
+            </div>
+        </div>
+    </section>
 
     <section class="people-section">
         <div class="content">
-            <h1>Our Team</h1>
-            <h2>Punyabhalan - Gabriel - Juliana - Vasileia</h2>
-            <p>Meet our skilled team of developers.
-                We are four students from Luxembourg Tech School who collaborated to explore the cutting-edge world of neurotechnology. 
-                Together, we developed both the narrative and technological aspects of this Digital Brain experience, 
-                examining how brain-computer interfaces are transforming from science fiction into reality. 
-                Our project invites visitors to contemplate the profound implications of merging human consciousness 
-                with artificial intelligence in today's rapidly evolving technological landscape.</p>
+            <h2>Our Team</h2>
+            <h3>Punyabhalan - Gabriel - Juliana - Vasileia</h3>
+            <p>As four curious minds from the Luxembourg Tech School, we co-created this experience from the ground up — combining creative writing, technical development, and future thinking.</p>
+            <p>Together, we explored how brain-computer interfaces are evolving from science fiction into science fact. Our goal? To invite you into a world where human consciousness and neurotechnology meet - and to spark reflection on the choices we face in a rapidly changing digital age.</p>
             <button><a href="mailto:contact@techschool.lu">Contact Us</a></button>
         </div>
         <div class="image-container">
             <img src="{{ url_for('static', filename='images/team.jpeg') }}" alt="Our team">
         </div>
     </section>
-    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Digital Brain</h3>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo footer">
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2025 Digital Brain. <a href="https://www.techschool.lu" target="_blank" rel="noopener noreferrer">LUXEMBOURG TECH SCHOOL</a></p>
+        </div>
+    </footer>
+
 </body>
-
-<footer>
-    <div class="footer-content">
-        <h3>Digital Brain</h3>
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo footer">
-    </div>
-    <div class="footer-bottom">
-        <p>copyright &copy;2025 Digital Brain. <a href="https://www.techschool.lu" target="_blank" rel="noopener noreferrer">LUXEMBOURG TECH SCHOOL</a></p>
-    </div>
-</footer>
-
 </html>
